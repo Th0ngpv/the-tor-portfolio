@@ -21,20 +21,10 @@ export default function Lightbox({
 }: LightboxProps) {
   const image = images[current];
 
-  // Controls whether the shared layout animation (layoutId) is applied.
-  // We temporarily disable layout-based morphing while the user navigates between images
-  // to avoid jarring aspect-ratio morphs between portrait/landscape images.
   const [enableLayout, setEnableLayout] = useState(true);
-
-  // Tracks whether the component has mounted so the initial mount is not treated as navigation.
   const mountedRef = useRef(false);
-
-  // Stores the navigation debounce timer so it can be cleared on unmount.
   const navTimerRef = useRef<number | null>(null);
 
-  // When `current` changes (i.e., user navigated to a different image), disable the shared
-  // layout animation briefly and re-enable it after a short debounce. This prevents
-  // Framer Motion from attempting an undesired morph between images with different dimensions.
   useEffect(() => {
     if (!mountedRef.current) {
       mountedRef.current = true;
@@ -43,28 +33,18 @@ export default function Lightbox({
 
     setEnableLayout(false);
 
-    if (navTimerRef.current) {
-      window.clearTimeout(navTimerRef.current);
-      navTimerRef.current = null;
-    }
+    if (navTimerRef.current) window.clearTimeout(navTimerRef.current);
 
-    // Re-enable layout after a short delay to allow the DOM to update.
     navTimerRef.current = window.setTimeout(() => {
       setEnableLayout(true);
       navTimerRef.current = null;
     }, 80) as unknown as number;
 
     return () => {
-      if (navTimerRef.current) {
-        window.clearTimeout(navTimerRef.current);
-        navTimerRef.current = null;
-      }
+      if (navTimerRef.current) window.clearTimeout(navTimerRef.current);
     };
   }, [current]);
 
-  // Close handler that ensures the shared layout animation is enabled before unmounting.
-  // Uses two requestAnimationFrame ticks so the browser can paint the enabled layout state,
-  // allowing Framer Motion to perform the shared-layout animation reliably on unmount.
   const handleClose = useCallback(() => {
     setEnableLayout(true);
     requestAnimationFrame(() => {
@@ -74,7 +54,6 @@ export default function Lightbox({
     });
   }, [onClose]);
 
-  // Keyboard navigation: Escape closes, ArrowLeft/Right navigate images.
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") handleClose();
@@ -84,16 +63,6 @@ export default function Lightbox({
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleClose, onPrev, onNext]);
-
-  // Ensure any pending navigation timer is cleared on unmount to avoid leaks.
-  useEffect(() => {
-    return () => {
-      if (navTimerRef.current) {
-        window.clearTimeout(navTimerRef.current);
-        navTimerRef.current = null;
-      }
-    };
-  }, []);
 
   if (!image) return null;
 
@@ -113,14 +82,9 @@ export default function Lightbox({
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
-          transition={{ duration: 0.5 }} // slower open/close for a smoother visual
+          transition={{ duration: 0.5 }}
           onClick={(e) => e.stopPropagation()}
         >
-          {/*
-            If layout-based morphing is enabled we render the image with a layoutId
-            so Framer Motion performs the shared-layout animation (used for open/close).
-            If disabled (during navigation) we render a keyed node that crossfades instead.
-          */}
           {enableLayout ? (
             <motion.div layoutId={`image-${current}`} className="relative w-auto h-auto">
               <Image
@@ -151,41 +115,32 @@ export default function Lightbox({
               </motion.div>
             </AnimatePresence>
           )}
-
-          {/* Navigation controls */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onPrev();
-            }}
-            aria-label="Previous"
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
-          >
-            ‹
-          </button>
-
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onNext();
-            }}
-            aria-label="Next"
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
-          >
-            ›
-          </button>
-
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleClose();
-            }}
-            aria-label="Close"
-            className="absolute top-2 right-2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
-          >
-            ✕
-          </button>
         </motion.div>
+
+        {/* Fixed navigation buttons */}
+        <button
+          onClick={(e) => { e.stopPropagation(); onPrev(); }}
+          aria-label="Previous"
+          className="fixed top-1/2 left-4 -translate-y-1/2 p-4 md:p-6 bg-black/40 hover:bg-black/60 rounded-full text-white text-2xl md:text-3xl z-50"
+        >
+          ‹
+        </button>
+
+        <button
+          onClick={(e) => { e.stopPropagation(); onNext(); }}
+          aria-label="Next"
+          className="fixed top-1/2 right-4 -translate-y-1/2 p-4 md:p-6 bg-black/40 hover:bg-black/60 rounded-full text-white text-2xl md:text-3xl z-50"
+        >
+          ›
+        </button>
+
+        <button
+          onClick={(e) => { e.stopPropagation(); handleClose(); }}
+          aria-label="Close"
+          className="fixed top-4 right-4 p-3 md:p-4 bg-black/50 text-white rounded-full hover:bg-black/70 z-50"
+        >
+          ✕
+        </button>
       </motion.div>
     </AnimatePresence>
   );
