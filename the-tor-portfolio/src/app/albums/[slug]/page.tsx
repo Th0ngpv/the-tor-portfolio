@@ -1,11 +1,16 @@
+import { notFound } from "next/navigation";
 import { albums } from "@/data/albums";
 import AlbumPage from "@/components/AlbumPage";
+import PageWrapper from "@/components/PageWrapper";
 
 export default function AlbumDetail({ params }: { params: { slug: string } }) {
   const { slug } = params;
-
   const album = albums.find((a) => a.slug === slug);
-  if (!album) return <div className="p-6">Album not found</div>;
+  if (!album) notFound();
 
-  return <AlbumPage album={album} />;
+  return (
+    <PageWrapper>
+      <AlbumPage album={album} />
+    </PageWrapper>
+  );
 }
