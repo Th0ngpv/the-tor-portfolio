@@ -3,6 +3,7 @@ export type Album = {
   type: string;
   title: string;
   intro: string;
+  coverUrl: string;
   images: { src: string; alt: string }[];
 };
 
@@ -12,6 +13,7 @@ export const albums: Album[] = [
     type: "Wedding",
     title: "Phuong & Tuan",
     intro: "A glimpse into their special day.",
+    coverUrl: "/albums/phuong-tuan/01.jpg",
     images: [
       { src: "/albums/phuong-tuan/01.jpg", alt: "Couple walking" },
       { src: "/albums/phuong-tuan/02.jpg", alt: "Wedding ceremony" },
@@ -39,6 +41,7 @@ export const albums: Album[] = [
     type: "Wedding",
     title: "Dana & Kuda",
     intro: "Beautiful memories captured with elegance.",
+    coverUrl: "/albums/dana-kuda/01.jpg",
     images: [
       { src: "/albums/dana-kuda/01.jpg", alt: "Portrait of Dana & Kuda" }
     ],
