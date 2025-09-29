@@ -13,8 +13,10 @@ export const albums: Album[] = [
     title: "Naja & Rasmus",
     intro: "A glimpse into their special day.",
     images: [
-      { src: "/images/albums/naja-rasmus/01.jpg", alt: "Couple walking" },
-      { src: "/images/albums/naja-rasmus/02.jpg", alt: "Wedding ceremony" }
+      { src: "/albums/naja-rasmus/01.jpg", alt: "Couple walking" },
+      { src: "/albums/naja-rasmus/02.jpg", alt: "Wedding ceremony" },
+      { src: "/albums/naja-rasmus/03.jpg", alt: "Wedding ceremony" },
+      { src: "/albums/naja-rasmus/04.jpg", alt: "Wedding ceremony" }
     ],
   },
   {
@@ -23,7 +25,7 @@ export const albums: Album[] = [
     title: "Dana & Kuda",
     intro: "Beautiful memories captured with elegance.",
     images: [
-      { src: "/images/albums/dana-kuda/01.jpg", alt: "Portrait of Dana & Kuda" }
+      { src: "/albums/dana-kuda/01.jpg", alt: "Portrait of Dana & Kuda" }
     ],
   },
 ];
