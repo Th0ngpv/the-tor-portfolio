@@ -16,7 +16,13 @@ export const albums: Album[] = [
       { src: "/albums/naja-rasmus/01.jpg", alt: "Couple walking" },
       { src: "/albums/naja-rasmus/02.jpg", alt: "Wedding ceremony" },
       { src: "/albums/naja-rasmus/03.jpg", alt: "Wedding ceremony" },
-      { src: "/albums/naja-rasmus/04.jpg", alt: "Wedding ceremony" }
+      { src: "/albums/naja-rasmus/04.jpg", alt: "Wedding ceremony" },
+      { src: "/albums/naja-rasmus/05.jpg", alt: "Wedding ceremony" },
+      { src: "/albums/naja-rasmus/06.jpg", alt: "Wedding ceremony" },
+      { src: "/albums/naja-rasmus/07.jpg", alt: "Wedding ceremony" },
+      { src: "/albums/naja-rasmus/08.jpg", alt: "Wedding ceremony" },
+      { src: "/albums/naja-rasmus/09.jpg", alt: "Wedding ceremony" },
+      { src: "/albums/naja-rasmus/10.jpg", alt: "Wedding ceremony" },
     ],
   },
   {
