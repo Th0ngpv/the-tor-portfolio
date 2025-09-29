@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Album } from "@/data/albums";
-import Lightbox from "./Lightbox";
+import Lightbox from "@/components/Lightbox";
 
 export default function AlbumPage({ album }: { album: Album }) {
   const [current, setCurrent] = useState<number | null>(null);
