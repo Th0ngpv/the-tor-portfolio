@@ -23,29 +23,26 @@ export default function AlbumPage({ album }: { album: Album }) {
         <p className="mt-4 text-gray-600 max-w-2xl mx-auto">{album.intro}</p>
       </motion.header>
 
-      {/* grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {/* masonry grid */}
+      <div className="columns-2 md:columns-3 gap-4">
         {album.images.map((img, i) => (
-          <motion.button
+          <motion.div
             key={img.src}
-            onClick={() => setCurrent(i)}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.04 }}
-            whileHover={{ scale: 1.03 }}
-            className={`cursor-pointer rounded-lg overflow-hidden focus:outline-none`}
+            className="mb-4 break-inside-avoid cursor-pointer"
+            onClick={() => setCurrent(i)}
           >
-            <div className={`relative w-full ${i === 0 ? "h-96 md:h-[520px]" : "h-64 md:h-80"}`}>
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover"
-              />
-            </div>
-          </motion.button>
+            <Image
+              src={img.src}
+              alt={img.alt}
+              width={800}
+              height={1200}
+              className="w-full h-auto rounded-lg"
+            />
+          </motion.div>
         ))}
       </div>
 
@@ -66,7 +63,9 @@ export default function AlbumPage({ album }: { album: Album }) {
           images={album.images}
           current={current}
           onClose={() => setCurrent(null)}
-          onPrev={() => setCurrent((c) => (c! - 1 + album.images.length) % album.images.length)}
+          onPrev={() =>
+            setCurrent((c) => (c! - 1 + album.images.length) % album.images.length)
+          }
           onNext={() => setCurrent((c) => (c! + 1) % album.images.length)}
         />
       )}
