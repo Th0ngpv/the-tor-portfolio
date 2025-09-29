@@ -28,6 +28,7 @@ export default function AlbumPage({ album }: { album: Album }) {
         {album.images.map((img, i) => (
           <motion.div
             key={img.src}
+            layoutId={`image-${i}`}                 
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
