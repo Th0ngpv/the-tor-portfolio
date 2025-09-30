@@ -48,15 +48,15 @@ export default function AlbumPage({ album }: { album: Album }) {
         ))}
       </div>
 
-      {/* nav */}
+      {/* footer */}
       <motion.div
         className="flex justify-between items-center mt-8 px-1"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <Link href="/albums" className="text-sm text-gray-700 hover:underline">← More albums</Link>
-        <Link href="/" className="text-sm text-gray-700 hover:underline">Back to Home →</Link>
+        <Link href="/albums" className="text-sm md:text-base text-gray-700 hover:underline">← More albums</Link>
+        <Link href="/" className="text-sm md:text-base text-gray-700 hover:underline">Back to Home →</Link>
       </motion.div>
 
       {/* lightbox */}
