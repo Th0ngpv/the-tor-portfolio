@@ -12,17 +12,49 @@ export default function NavBar() {
   return (
     <div className="relative font-serif">
       {/* Menu Button */}
-      <div className="fixed top-4 left-4 z-50">
+      <div className="fixed top-5 right-5 z-50">
         <button
           onClick={toggleMenu}
-          className="px-4 py-2 rounded-lg shadow-lg
-            bg-white/30 backdrop-blur-md
-             font-semibold text-gray-900
-            border border-gray-500
-            hover:bg-white/40 hover:text-gray-800
-            transition"
+          className={`
+            relative w-10 h-10 flex items-center justify-center
+            rounded-lg transition-all duration-500
+            hover:scale-105
+            ${
+              menuOpen
+                ? "text-white"
+                : "text-gray-900 shadow-lg bg-white/10 backdrop-blur-sm"
+            }
+          `}
         >
-          {menuOpen ? "Close" : "Menu"}
+          {/* Top bar */}
+          <motion.span
+            initial={false}
+            animate={
+              menuOpen
+                ? { rotate: 45, y: 0 }
+                : { rotate: 0, y: -6 }
+            }
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="absolute block w-6 h-0.5 bg-current rounded origin-center"
+          />
+          {/* Middle bar */}
+          <motion.span
+            initial={false}
+            animate={menuOpen ? { opacity: 0 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="absolute block w-6 h-0.5 bg-current rounded origin-center"
+          />
+          {/* Bottom bar */}
+          <motion.span
+            initial={false}
+            animate={
+              menuOpen
+                ? { rotate: -45, y: 0 }
+                : { rotate: 0, y: 6 }
+            }
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="absolute block w-6 h-0.5 bg-current rounded origin-center"
+          />
         </button>
       </div>
 
@@ -31,29 +63,29 @@ export default function NavBar() {
         {menuOpen && (
           <motion.div
             key="overlay"
-            initial={{ x: "-100%" }}
+            initial={{ x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
+            exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.5 }}
-            className="fixed inset-0 bg-black bg-opacity-80 flex flex-col justify-center items-center text-white text-2xl z-40"
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm flex flex-col justify-center items-center text-white text-4xl space-y-8 z-40"
           >
             <Link
               href="/"
-              className="mb-6 hover:text-gray-300 transition"
+              className="hover:text-gray-300 transition-transform duration-300 hover:scale-105"
               onClick={() => setMenuOpen(false)}
             >
               Home
             </Link>
             <Link
               href="/albums"
-              className="mb-6 hover:text-gray-300 transition"
+              className="hover:text-gray-300 transition-transform duration-300 hover:scale-105"
               onClick={() => setMenuOpen(false)}
             >
               Albums
             </Link>
             <Link
               href="#"
-              className="hover:text-gray-300 transition"
+              className="hover:text-gray-300 transition-transform duration-300 hover:scale-105"
               onClick={() => setMenuOpen(false)}
             >
               Contact
