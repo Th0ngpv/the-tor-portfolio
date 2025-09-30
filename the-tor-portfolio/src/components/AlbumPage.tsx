@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Lightbox from "./Lightbox";
 import { Album } from "@/data/albums";
+import Link from "next/link";
 
 export default function AlbumPage({ album }: { album: Album }) {
   const [current, setCurrent] = useState<number | null>(null);
@@ -54,8 +55,8 @@ export default function AlbumPage({ album }: { album: Album }) {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <a href="/albums" className="text-sm text-gray-700 hover:underline">← More albums</a>
-        <a href="/weddings" className="text-sm text-gray-700 hover:underline">Back to Weddings →</a>
+        <Link href="/albums" className="text-sm text-gray-700 hover:underline">← More albums</Link>
+        <Link href="/" className="text-sm text-gray-700 hover:underline">Back to Home →</Link>
       </motion.div>
 
       {/* lightbox */}
