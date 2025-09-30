@@ -5,10 +5,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { albums } from "@/data/albums";
+import NavBar from "@/components/Navbar";
 
 export default function HomePage() {
   return (
+    
     <main>
+      {/* NavBar */}
+      <NavBar />
       {/* Hero Section */}
       <motion.section
         className="relative w-full h-[80vh] bg-cover bg-center"

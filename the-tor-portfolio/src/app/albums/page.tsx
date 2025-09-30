@@ -5,10 +5,13 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { albums } from "@/data/albums";
+import NavBar from "@/components/Navbar";
 
 export default function AlbumsPage() {
   return (
     <main className="py-16 max-w-7xl mx-auto px-6">
+      {/* NavBar */}
+      <NavBar />
       <motion.h1
         className="text-4xl md:text-5xl font-serif font-bold text-center mb-12"
         initial={{ opacity: 0, y: 20 }}
@@ -50,6 +53,15 @@ export default function AlbumsPage() {
           </motion.div>
         ))}
       </div>
+      {/* nav */}
+      <motion.div
+        className="flex justify-between items-center mt-8 px-1"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+      >
+        <Link href="/" className="text-sm text-gray-700 hover:underline">← Back to Home</Link>
+      </motion.div>
     </main>
   );
 }
