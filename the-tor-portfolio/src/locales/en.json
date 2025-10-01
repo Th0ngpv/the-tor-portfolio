@@ -5,12 +5,12 @@
     "title": "The Tor Photography",
     "subtitle": "Capturing Love Stories With Elegance",
     "welcomeTitle": "Welcome",
-    "aboutText": "I’m Tor, a wedding photographer passionate about capturing authentic moments filled with love, joy, and timeless beauty. My approach is natural and elegant — telling your story through images that last a lifetime.",
-    "ctaTitle": "Let’s Create Timeless Memories",
-    "ctaText": "I would love to hear about your wedding plans. Let’s capture your story together.",
+    "aboutText": "I'm Tor, a wedding photographer passionate about capturing authentic moments filled with love, joy, and timeless beauty. My approach is natural and elegant — telling your story through images that last a lifetime.",
+    "ctaTitle": "Let's Create Timeless Memories",
+    "ctaText": "I would love to hear about your wedding plans. Let's capture your story together.",
     "ctaButton": "Book Your Wedding",
     "footerName": "The Tor Photography"
   },
   "albumsPage": { "title": "Wedding Albums", "back": "← Back to Home", "forward": "Book Now →", "noCover": "No Cover" },
-  "contactPage": { "header": "Contact Me", "intro": "Have a question, project idea, or just want to say hello? Fill out the form below and I’ll get back to you as soon as possible.", "sendButton": "Send Message" }
+  "contactPage": { "header": "Contact Me", "intro": "Have a question, project idea, or just want to say hello? Fill out the form below and I'll get back to you as soon as possible.", "sendButton": "Send Message" }
 }

@@ -64,10 +64,10 @@ export default function HomePage() {
       {/* Call to Action */}
       <section className={`py-20 px-6 text-center ${darkMode ? "bg-black/75" : "bg-gray-100"}`}>
         <h2 className="text-3xl font-serif font-semibold mb-4">
-          {t.homePage.ctaTitle || "Let’s Create Timeless Memories"}
+          {t.homePage.ctaTitle || "Let's Create Timeless Memories"}
         </h2>
         <p className={darkMode ? "text-gray-300 mb-8" : "text-gray-600 mb-8"}>
-          {t.homePage.ctaText || "I would love to hear about your wedding plans. Let’s capture your story together."}
+          {t.homePage.ctaText || "I would love to hear about your wedding plans. Let's capture your story together."}
         </p>
         <Link
           href="/contact"
