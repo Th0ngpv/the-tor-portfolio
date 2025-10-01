@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -9,72 +8,113 @@ import NavBar from "@/components/Navbar";
 
 export default function HomePage() {
   return (
-    
     <main>
-      {/* NavBar */}
       <NavBar />
+
       {/* Hero Section */}
       <motion.section
-        className="relative w-full h-[80vh] bg-cover bg-center"
-        style={{ backgroundImage: `url('/hero-image.jpg')` }}
+        className="relative w-full h-[90vh] flex items-center justify-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h1 className="text-white text-4xl md:text-6xl font-serif text-center px-4">
-            Capturing Moments Between Moments
+        <Image
+          src="/hero-wedding.jpg" // use your best wedding hero shot
+          alt="Wedding Photography"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="relative text-center text-white px-4">
+          <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4">
+            The Tor Photography
           </h1>
+          <p className="text-lg md:text-xl font-light tracking-wide">
+            Capturing Love Stories With Elegance
+          </p>
+        </div>
+        <div className="absolute bottom-8 w-full flex justify-center">
+          <span className="text-white animate-bounce">↓</span>
         </div>
       </motion.section>
 
-      {/* Album Previews */}
-      <section className="py-16 bg-gray-100">
-        <h2 className="text-center text-3xl font-semibold mb-12">Our Recent Weddings</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {albums.map((album) => (
-            <Link key={album.slug} href={`/albums/${album.slug}`} className="group block">
-              <div
-                className="relative w-full h-64 rounded-lg overflow-hidden bg-gray-200 group-hover:scale-105 transition-transform duration-300"
-              >
-                {album.coverUrl && (
-                  <Image
-                    src={album.coverUrl}
-                    alt={album.title}
-                    fill
-                    className="object-cover w-full h-full"
-                  />
-                )}
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors"></div>
-                <div className="absolute bottom-0 left-0 p-4 text-white">
-                  <h3 className="text-xl font-semibold">{album.title}</h3>
-                  <p className="text-sm">{album.intro}</p>
+      {/* About / Intro */}
+      <section className="py-20 max-w-3xl mx-auto px-6 text-center">
+        <h2 className="text-3xl font-serif font-semibold mb-6">
+          Welcome
+        </h2>
+        <p className="text-gray-700 leading-relaxed">
+          I’m Tor, a wedding photographer passionate about capturing
+          authentic moments filled with love, joy, and timeless beauty.
+          My approach is natural and elegant — telling your story
+          through images that last a lifetime.
+        </p>
+      </section>
+
+      {/* Featured Weddings */}
+      <section className="py-20 bg-gray-50">
+        <h2 className="text-center text-3xl font-serif font-semibold mb-12">
+          Featured Weddings
+        </h2>
+        <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6 max-w-6xl mx-auto px-6">
+          {albums.slice(0, 6).map((album, i) => (
+            <motion.div
+              key={album.slug}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="relative break-inside-avoid group"
+            >
+              <Link href={`/albums/${album.slug}`}>
+                <Image
+                  src={album.coverUrl ?? "/placeholder.jpg"}
+                  alt={album.title}
+                  width={800}
+                  height={1000}
+                  className="w-full h-auto rounded-xl object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
+                  <span className="text-white text-lg font-serif">
+                    {album.title}
+                  </span>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Call-to-Action */}
-      <section className="py-16 bg-black text-white text-center">
-        <h2 className="text-3xl font-semibold mb-4">Ready to Capture Your Moments?</h2>
-        <p className="mb-8">Let&apos;s create timeless memories together.</p>
+      {/* Call to Action */}
+      <section className="py-20 text-center bg-white">
+        <h2 className="text-3xl font-serif font-semibold mb-4">
+          Let’s Create Timeless Memories
+        </h2>
+        <p className="text-gray-600 mb-8">
+          I would love to hear about your wedding plans. Let’s capture
+          your story together.
+        </p>
         <Link
           href="/contact"
-          className="bg-blue-600 text-white py-3 px-6 rounded-full text-lg hover:bg-blue-700 transition-colors"
+          className="inline-block bg-black text-white py-3 px-8 rounded-full hover:bg-gray-800 transition-colors"
         >
-          Contact Us
+          Book Your Wedding
         </Link>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-16 bg-white text-center">
-        <h2 className="text-3xl font-semibold mb-4">Get in Touch</h2>
-        <p className="text-gray-700 mb-2">Email: hello@yourstudio.com</p>
-        <p className="text-gray-700 mb-2">Phone: +123 456 7890</p>
-        <p className="text-gray-700">Location: 123 Wedding Street, City, Country</p>
-      </section>
+      {/* Footer */}
+      <footer className="py-12 text-center text-gray-600 text-sm">
+        <p>© {new Date().getFullYear()} The Tor Photography</p>
+        <p className="mt-2">
+          <a href="mailto:hello@thetorphotography.com" className="hover:underline">
+            hello@thetorphotography.com
+          </a>{" "}
+          | <a href="https://instagram.com/thetorphotography" target="_blank" className="hover:underline">
+            Instagram
+          </a>
+        </p>
+      </footer>
     </main>
   );
 }
