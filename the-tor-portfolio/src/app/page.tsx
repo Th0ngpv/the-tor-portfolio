@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { albums } from "@/data/albums";
 import NavBar from "@/components/Navbar";
+import FeaturedWeddings from "@/components/FeaturedWeddings";
 
 export default function HomePage() {
   return (
@@ -51,43 +51,11 @@ export default function HomePage() {
           through images that last a lifetime.
         </p>
       </section>
-
       {/* Featured Weddings */}
-      <section className="py-20 bg-gray-50">
-        <h2 className="text-center text-3xl font-serif font-semibold mb-12">
-          Featured Weddings
-        </h2>
-        <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6 max-w-6xl mx-auto px-6">
-          {albums.slice(0, 6).map((album, i) => (
-            <motion.div
-              key={album.slug}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative break-inside-avoid group"
-            >
-              <Link href={`/albums/${album.slug}`}>
-                <Image
-                  src={album.coverUrl ?? "/placeholder.jpg"}
-                  alt={album.title}
-                  width={800}
-                  height={1000}
-                  className="w-full h-auto rounded-xl object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                />
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
-                  <span className="text-white text-lg font-serif">
-                    {album.title}
-                  </span>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      <FeaturedWeddings />
 
       {/* Call to Action */}
-      <section className="py-20 text-center bg-white">
+      <section className="py-20 px-6 text-center bg-white">
         <h2 className="text-3xl font-serif font-semibold mb-4">
           Let’s Create Timeless Memories
         </h2>
