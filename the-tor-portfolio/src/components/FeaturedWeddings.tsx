@@ -77,7 +77,7 @@ export default function FeaturedWeddings3D() {
 
   return (
     <section
-      className={`py-20 overflow-hidden transition-colors duration-500 
+      className={`overflow-hidden transition-colors duration-500 
         ${darkMode ? "bg-black/50" : "bg-white"}
       `}
     >
@@ -128,7 +128,7 @@ export default function FeaturedWeddings3D() {
                   />
                   {/* Album title overlay */}
                   <div
-                    className={`absolute top-1 left-0 w-full font-serif text-center py-2 rounded-b-xl text-white/75`}
+                    className={`absolute top-1 left-0 w-full font-serif text-center py-2 rounded-b-xl text-white/85`}
                   >
                     {album.title}
                   </div>

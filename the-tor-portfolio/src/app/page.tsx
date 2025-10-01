@@ -48,7 +48,7 @@ export default function HomePage() {
         <h2 className="text-3xl font-serif font-semibold mb-6">
           Welcome
         </h2>
-        <p className={darkMode ? "text-gray-300 leading-relaxed" : "text-gray-700 leading-relaxed"}>
+        <p className={`text-md ${darkMode ? "text-gray-300 leading-relaxed" : "text-gray-700 leading-relaxed"}`}>
           I’m Tor, a wedding photographer passionate about capturing
           authentic moments filled with love, joy, and timeless beauty.
           My approach is natural and elegant — telling your story

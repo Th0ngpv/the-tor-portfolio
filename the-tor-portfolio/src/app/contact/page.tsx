@@ -24,7 +24,7 @@ export default function ContactPage() {
         >
           <p className="text-sm uppercase text-gray-500 tracking-wider">Get in Touch</p>
           <h1 className="text-4xl md:text-5xl font-serif font-bold mt-2">Contact Me</h1>
-          <p className="mt-4 text-gray-600 max-w-xl mx-auto">
+          <p className="text-md mt-4 text-gray-600 max-w-xl mx-auto">
             Have a question, project idea, or just want to say hello?  
             Fill out the form below and I’ll get back to you as soon as possible.
           </p>
