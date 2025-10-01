@@ -21,7 +21,7 @@ export default function NavBar() {
           className={`relative w-10 h-10 flex items-center justify-center rounded-lg transition-all duration-500 hover:scale-105 ${
             menuOpen
               ? "text-white"
-              : "text-gray-900 shadow-lg bg-white/10 backdrop-blur-sm"
+              : "text-gray-900 shadow-lg bg-white/50 backdrop-blur-sm"
           }`}
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
