@@ -1,0 +1,16 @@
+{
+  "nav": { "home": "Trang chủ", "albums": "Album", "contact": "Liên hệ" },
+  "homePage": {
+    "heroAlt": "Nhiếp Ảnh Cưới",
+    "title": "The Tor Photography",
+    "subtitle": "Ghi lại câu chuyện tình yêu một cách tinh tế",
+    "welcomeTitle": "Chào mừng",
+    "aboutText": "Tôi là Tor, một nhiếp ảnh gia cưới đam mê ghi lại những khoảnh khắc chân thực, tràn đầy tình yêu, niềm vui và vẻ đẹp vượt thời gian. Phong cách của tôi tự nhiên và tinh tế — kể câu chuyện của bạn qua những hình ảnh trường tồn.",
+    "ctaTitle": "Hãy Tạo Ra Những Kỷ Niệm Vượt Thời Gian",
+    "ctaText": "Tôi rất muốn lắng nghe kế hoạch cưới của bạn. Hãy cùng nhau ghi lại câu chuyện của bạn.",
+    "ctaButton": "Đặt Ngay",
+    "footerName": "The Tor Photography"
+  },
+  "albumsPage": { "title": "Album Cưới", "back": "← Quay về Trang Chủ","forward": "Đặt Lịch Ngay →", "noCover": "Không có ảnh bìa" },
+  "contactPage": { "header": "Liên hệ tôi", "intro": "Có câu hỏi, ý tưởng dự án, hoặc chỉ muốn chào? Điền vào biểu mẫu dưới đây và tôi sẽ phản hồi bạn sớm nhất có thể.", "sendButton": "Gửi Thông Điệp" }
+}

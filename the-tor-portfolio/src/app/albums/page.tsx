@@ -1,4 +1,3 @@
-// app/albums/page.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -7,13 +6,19 @@ import Image from "next/image";
 import { albums } from "@/data/albums";
 import NavBar from "@/components/Navbar";
 import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
+import en from "@/locales/en.json";
+import vi from "@/locales/vi.json";
 
 export default function AlbumsPage() {
-  const {darkMode} = useTheme();
+  const { darkMode } = useTheme();
+  const { lang } = useLanguage();
+  const t = lang === "en" ? en : vi;
+
   return (
     <main className={`min-h-screen py-16 px-6 
-    ${darkMode ? "bg-black/95 text-gray-100" : "bg-white text-gray-900"} transition-colors duration-500`}>
-      {/* NavBar */}
+      ${darkMode ? "bg-black/95 text-gray-100" : "bg-white text-gray-900"} transition-colors duration-500`}
+    >
       <NavBar />
       <motion.h1
         className="text-4xl md:text-5xl font-serif font-bold text-center mb-12"
@@ -21,7 +26,7 @@ export default function AlbumsPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Wedding Albums
+        {t.albumsPage.title}
       </motion.h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -43,12 +48,12 @@ export default function AlbumsPage() {
                   />
                 ) : (
                   <div className="flex items-center justify-center w-full h-full bg-gray-300 text-gray-700">
-                    No Cover
+                    {t.albumsPage.noCover}
                   </div>
                 )}
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/50 transition-colors"></div>
                 <div className="absolute bottom-0 left-0 p-4 text-white">
-                  <h3 className="text-xl font-semibold  font-serif">{album.title}</h3>
+                  <h3 className="text-xl font-semibold font-serif">{album.title}</h3>
                   <p className="text-sm">{album.intro}</p>
                 </div>
               </div>
@@ -56,14 +61,19 @@ export default function AlbumsPage() {
           </motion.div>
         ))}
       </div>
-      {/* footer */}
+
       <motion.div
         className="flex justify-between items-center mt-8 px-1"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <Link href="/" className={`text-sm md:text-base text-black hover:underline ${darkMode ? "text-white" : "text-gray-700"}`}>← Back to Home</Link>
+        <Link href="/" className={`text-sm md:text-base ${darkMode ? "text-white" : "text-gray-700"} hover:underline`}>
+          {t.albumsPage.back}
+        </Link>
+        <Link href="/contact" className={`text-sm md:text-base ${darkMode ? "text-white" : "text-gray-700"} hover:underline`}>
+          {t.albumsPage.forward}
+        </Link>
       </motion.div>
     </main>
   );

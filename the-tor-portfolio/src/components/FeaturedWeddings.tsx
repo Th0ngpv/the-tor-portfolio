@@ -77,8 +77,8 @@ export default function FeaturedWeddings3D() {
 
   return (
     <section
-      className={`overflow-hidden transition-colors duration-500 
-        ${darkMode ? "bg-black/50" : "bg-white"}
+      className={`py-12 overflow-hidden transition-colors duration-500 
+        ${darkMode ? "border-t border-b border-black/50" : "bg-white"}
       `}
     >
       <h2 className="text-center text-3xl font-serif font-semibold mb-12">
