@@ -6,10 +6,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { albums } from "@/data/albums";
 import NavBar from "@/components/Navbar";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function AlbumsPage() {
+  const {darkMode} = useTheme();
   return (
-    <main className="py-16 max-w-7xl mx-auto px-6">
+    <main className={`min-h-screen py-16 px-6 
+    ${darkMode ? "bg-black/95 text-gray-100" : "bg-white text-gray-900"} transition-colors duration-500`}>
       {/* NavBar */}
       <NavBar />
       <motion.h1
@@ -60,7 +63,7 @@ export default function AlbumsPage() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <Link href="/" className="text-sm md:text-base text-gray-700 hover:underline">← Back to Home</Link>
+        <Link href="/" className={`text-sm md:text-base text-black hover:underline ${darkMode ? "text-white" : "text-gray-700"}`}>← Back to Home</Link>
       </motion.div>
     </main>
   );

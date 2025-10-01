@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { albums } from "@/data/albums";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function FeaturedWeddings3D() {
+  const { darkMode } = useTheme(); // <-- get dark mode
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
   const len = albums.length;
@@ -43,14 +45,12 @@ export default function FeaturedWeddings3D() {
       opacityDelay = 0;
 
     if (offset === 0) {
-      // center
       x = 0;
       scale = 1;
       rotateY = 0;
       zIndex = 10;
       opacity = 1;
     } else if (offset === 1 || offset === -len + 1) {
-      // right
       x = SIDE_OFFSET;
       scale = SCALE_SIDE;
       rotateY = -ROTATE_SIDE;
@@ -58,7 +58,6 @@ export default function FeaturedWeddings3D() {
       opacity = 0.9;
       opacityDelay = 0.3;
     } else if (offset === len - 1 || offset === -1) {
-      // left
       x = -SIDE_OFFSET;
       scale = SCALE_SIDE;
       rotateY = ROTATE_SIDE;
@@ -66,20 +65,22 @@ export default function FeaturedWeddings3D() {
       opacity = 0.9;
       opacityDelay = 0.3;
     } else {
-      // back / hidden
       x = 0;
       scale = 0.7;
       rotateY = 0;
       zIndex = 1;
       opacity = 0;
-
     }
 
     return { x, scale, rotateY, zIndex, opacity, opacityDelay };
   };
 
   return (
-    <section className="py-20 bg-gray-50 overflow-hidden">
+    <section
+      className={`py-20 overflow-hidden transition-colors duration-500 
+        ${darkMode ? "bg-black/50" : "bg-white"}
+      `}
+    >
       <h2 className="text-center text-3xl font-serif font-semibold mb-12">
         Featured Weddings
       </h2>
@@ -108,7 +109,13 @@ export default function FeaturedWeddings3D() {
                   opacity: { duration: DURATION / 2, ease: "easeInOut", delay: opacityDelay },
                 }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl overflow-hidden shadow-lg p-0 border-0 bg-transparent"
-                style={{ width: CARD_WIDTH, height: CARD_HEIGHT, zIndex, cursor: "pointer", transformStyle: "preserve-3d" }}
+                style={{
+                  width: CARD_WIDTH,
+                  height: CARD_HEIGHT,
+                  zIndex,
+                  cursor: "pointer",
+                  transformStyle: "preserve-3d",
+                }}
                 aria-label={`Show ${album.title}`}
               >
                 <Link href={`/albums/${album.slug}`} className="block">
@@ -119,10 +126,12 @@ export default function FeaturedWeddings3D() {
                     height={CARD_HEIGHT}
                     className="block rounded-xl object-cover"
                   />
-                {/* Album title overlay */}
-                <div className="absolute top-1 left-0 w-full font-serif bg-black/10 text-white text-center py-2 rounded-b-xl opacity-75">
+                  {/* Album title overlay */}
+                  <div
+                    className={`absolute top-1 left-0 w-full font-serif text-center py-2 rounded-b-xl text-white/75`}
+                  >
                     {album.title}
-                </div>
+                  </div>
                 </Link>
               </motion.button>
             );
@@ -132,14 +141,18 @@ export default function FeaturedWeddings3D() {
         <button
           onClick={prev}
           aria-label="Previous"
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-900 shadow-lg bg-white/50 backdrop-blur-sm text-xl p-2 rounded-full hover:scale-105"
+          className={`absolute left-4 top-1/2 -translate-y-1/2 shadow-lg text-xl p-2 rounded-full hover:scale-105 transition-colors ${
+            darkMode ? "text-white bg-black" : "bg-white bg-white/50 backdrop-blur-sm"
+          }`}
         >
-          &#8249; 
+          &#8249;
         </button>
         <button
           onClick={next}
           aria-label="Next"
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-900 shadow-lg bg-white/50 backdrop-blur-sm text-xl p-2 rounded-full hover:scale-105"
+          className={`absolute right-4 top-1/2 -translate-y-1/2 shadow-lg text-xl p-2 rounded-full hover:scale-105 transition-colors ${
+            darkMode ? "text-white bg-black" : "bg-white bg-white/50 backdrop-blur-sm"
+          }`}
         >
           &#8250;
         </button>
