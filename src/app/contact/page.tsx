@@ -53,7 +53,8 @@ export default function ContactPage() {
 
           <button
             type="submit"
-            className={`w-full py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors ${darkMode ? "bg-white text-black" : "bg-black text-white"}`}
+            className={`w-full py-3 rounded-lg font-medium transition-colors border
+            ${darkMode ? "bg-white text-black hover:bg-black hover:border border-white hover:text-white" : "bg-black text-white border border-black/20 hover:bg-white hover:text-black hover:border-black"}`}
           >
             {t.contactPage.sendButton}
           </button>
@@ -62,10 +63,27 @@ export default function ContactPage() {
         <motion.div className="text-center mt-12 space-y-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
           <p className="text-gray-600">Or reach me directly:</p>
           <p className="font-medium">your@email.com</p>
-          <div className="flex justify-center gap-6 text-gray-600">
-            <Link href="https://instagram.com" target="_blank" className="hover:text-black">Instagram</Link>
-            <Link href="https://facebook.com" target="_blank" className="hover:text-black">Facebook</Link>
-            <Link href="/" className="hover:text-black">{t.nav.home}</Link>
+          <div className={`flex justify-center gap-6 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+            <Link
+              href="https://instagram.com"
+              target="_blank"
+              className={`${darkMode ? "hover:text-white" : "hover:text-black"} transition-colors`}
+            >
+              Instagram
+            </Link>
+            <Link
+              href="https://facebook.com"
+              target="_blank"
+              className={`${darkMode ? "hover:text-white" : "hover:text-black"} transition-colors`}
+            >
+              Facebook
+            </Link>
+            <Link
+              href="/"
+              className={`${darkMode ? "hover:text-white" : "hover:text-black"} transition-colors`}
+            >
+              {t.nav.home}
+            </Link>
           </div>
         </motion.div>
       </div>
