@@ -120,7 +120,7 @@ function LinkWrapper({
 
   return (
     <div className="group relative">
-      <a
+      <Link
         href={href}
         onClick={handleClick}
         className="relative inline-block px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
@@ -132,7 +132,7 @@ function LinkWrapper({
           aria-hidden
           className="absolute left-0 -bottom-2 h-[2px] bg-white w-0 group-hover:w-full group-focus:w-full transition-all duration-300 ease-in-out"
         />
-      </a>
+      </Link>
     </div>
   );
 }
