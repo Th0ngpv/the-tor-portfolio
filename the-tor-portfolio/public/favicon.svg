@@ -1,0 +1,14 @@
+<!-- public/favicon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Black background with rounded corners -->
+  <rect width="100%" height="100%" rx="96" ry="96" fill="#000000" />
+  
+  <!-- Centered serif text -->
+  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
+        font-family="serif"
+        font-weight="700"
+        font-size="220"
+        fill="#ffffff">
+    Tor
+  </text>
+</svg>
