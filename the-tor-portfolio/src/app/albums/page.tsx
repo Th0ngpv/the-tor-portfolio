@@ -45,7 +45,7 @@ export default function AlbumsPage() {
                 )}
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/50 transition-colors"></div>
                 <div className="absolute bottom-0 left-0 p-4 text-white">
-                  <h3 className="text-xl font-semibold">{album.title}</h3>
+                  <h3 className="text-xl font-semibold  font-serif">{album.title}</h3>
                   <p className="text-sm">{album.intro}</p>
                 </div>
               </div>
