@@ -16,7 +16,7 @@ export default function HomePage() {
   const t = lang === "en" ? en : vi;
 
   return (
-    <main className={`transition-colors duration-500 ${darkMode ? "bg-black/95 text-gray-100" : "bg-ivory text-gray-900"}`}>
+    <main className={`transition-colors duration-500 ${darkMode ? "bg-black/95 text-gray-100" : "bg-white text-gray-900"}`}>
       <NavBar />
 
       {/* Hero Section */}
@@ -43,7 +43,7 @@ export default function HomePage() {
           </p>
         </div>
         <div className="absolute bottom-8 w-full flex justify-center">
-          <span className="animate-bounce">↓</span>
+          <span className="animate-bounce text-white">↓</span>
         </div>
       </motion.section>
 
@@ -54,7 +54,7 @@ export default function HomePage() {
         </h2>
         <p className={`text-md ${darkMode ? "text-gray-300 leading-relaxed" : "text-gray-700 leading-relaxed"}`}>
           {t.homePage.aboutText || 
-            "I’m Tor, a wedding photographer passionate about capturing authentic moments filled with love, joy, and timeless beauty. My approach is natural and elegant — telling your story through images that last a lifetime."}
+            "I'm Tor, a wedding photographer passionate about capturing authentic moments filled with love, joy, and timeless beauty. My approach is natural and elegant — telling your story through images that last a lifetime."}
         </p>
       </section>
 
@@ -62,7 +62,7 @@ export default function HomePage() {
       <FeaturedWeddings />
 
       {/* Call to Action */}
-      <section className={`py-20 px-6 text-center ${darkMode ? "bg-black/75" : "bg-ivory"}`}>
+      <section className={`py-20 px-6 text-center ${darkMode ? "bg-black/75" : "bg-white"}`}>
         <h2 className="text-3xl font-serif font-semibold mb-4">
           {t.homePage.ctaTitle || "Let's Create Timeless Memories"}
         </h2>
@@ -83,10 +83,10 @@ export default function HomePage() {
       <footer className="py-12 text-center text-gray-600 text-sm">
         <p>© {new Date().getFullYear()} {t.homePage.footerName || "The Tor Photography"}</p>
         <p className="mt-2">
-          <a href="mailto:hello@thetorphotography.com" className="hover:underline">
-            hello@thetorphotography.com
+          <a href="mailto:thetorstudio@gmail.com" className="hover:underline">
+            thetorstudio@gmail.com
           </a>{" "}
-          | <a href="https://instagram.com/thetorphotography" target="_blank" className="hover:underline">
+          | <a href="https://www.instagram.com/thetor1997" target="_blank" className="hover:underline">
             Instagram
           </a>
         </p>
