@@ -2,11 +2,11 @@
 
 import NavBar from "@/components/Navbar";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import en from "@/locales/en.json";
 import vi from "@/locales/vi.json";
+import Image from "next/image";
 
 export default function ContactPage() {
   const { darkMode } = useTheme();
@@ -15,12 +15,12 @@ export default function ContactPage() {
 
   const contactItems = [
     {
-      icon: <MapPin size={24} className="text-red-500" />,
+      icon: "/icons/location.svg",
       content:
         "435/1 Hương Lộ 3, P. Bình Hưng Hoà, Q. Bình Tân, HCM City, Vietnam",
     },
     {
-      icon: <Phone size={24} className="text-green-500" />,
+      icon: "/icons/phone.svg",
       content: (
         <a href="tel:+84908094341" className="hover:underline">
           +84 90 809 43 41
@@ -28,7 +28,7 @@ export default function ContactPage() {
       ),
     },
     {
-      icon: <Mail size={24} className="text-blue-500" />,
+      icon: "/icons/mail.svg",
       content: (
         <a href="mailto:thetorstudio@gmail.com" className="hover:underline">
           thetorstudio@gmail.com
@@ -40,28 +40,19 @@ export default function ContactPage() {
   const socialLinks = [
     {
       href: "https://www.instagram.com/thetor1997/",
-      icon: (
-        <Instagram
-          size={28}
-          className="hover:text-pink-500 transition-colors"
-        />
-      ),
+      icon: "/icons/instagram.svg",
     },
     {
       href: "https://www.facebook.com/profile.php?id=61567321138883",
-      icon: (
-        <Facebook
-          size={28}
-          className="hover:text-blue-500 transition-colors"
-        />
-      ),
+      icon: "/icons/facebook.svg",
     },
   ];
 
   return (
     <main
-      className={`min-h-screen transition-colors duration-300 ${darkMode ? "bg-black/95 text-white" : "bg-white text-gray-900"
-        }`}
+      className={`min-h-screen transition-colors duration-300 ${
+        darkMode ? "bg-black/95 text-white" : "bg-white text-gray-900"
+      }`}
     >
       <NavBar />
 
@@ -101,7 +92,15 @@ export default function ContactPage() {
                 key={i}
                 className="flex items-center gap-4 justify-center lg:justify-start"
               >
-                {item.icon}
+                <Image
+                  src={item.icon}
+                  width={28}
+                  height={28}
+                  alt=""
+                  className={`transition-colors ${
+                    darkMode ? "invert" : "invert-0"
+                  }`}
+                />
                 <p>{item.content}</p>
               </div>
             ))}
@@ -113,9 +112,17 @@ export default function ContactPage() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:scale-110 transition-transform"
+                  className="transition-transform hover:scale-110"
                 >
-                  {social.icon}
+                  <Image
+                    src={social.icon}
+                    width={28}
+                    height={28}
+                    alt=""
+                    className={`transition-colors ${
+                      darkMode ? "invert" : "invert-0"
+                    }`}
+                  />
                 </a>
               ))}
             </div>
