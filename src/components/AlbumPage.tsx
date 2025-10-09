@@ -7,6 +7,7 @@ import Lightbox from "./Lightbox";
 import { Album } from "@/data/albums";
 import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
+import NavBar from "./Navbar";
 
 export default function AlbumPage({ album }: { album: Album }) {
   const [current, setCurrent] = useState<number | null>(null);
@@ -15,6 +16,8 @@ export default function AlbumPage({ album }: { album: Album }) {
   return (
     // Full page container
     <div className={`${darkMode ? "bg-black text-white" : "bg-white text-gray-900"} min-h-screen`}>
+      {/* NavBar */}
+      <NavBar />
       
       {/* Content wrapper centered */}
       <div className="p-6 max-w-6xl mx-auto">
