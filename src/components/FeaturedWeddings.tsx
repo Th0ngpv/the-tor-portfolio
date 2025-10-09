@@ -8,7 +8,7 @@ import { albums } from "@/data/albums";
 import { useTheme } from "@/context/ThemeContext";
 
 export default function FeaturedWeddings3D() {
-  const { darkMode } = useTheme(); // <-- get dark mode
+  const { darkMode } = useTheme();
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
   const len = albums.length;
@@ -77,9 +77,9 @@ export default function FeaturedWeddings3D() {
 
   return (
     <section
-      className={`py-12 overflow-hidden transition-colors duration-500 
-        ${darkMode ? "border-t border-b border-black/50" : "bg-white"}
-      `}
+      className={`py-12 overflow-hidden transition-colors duration-500 ${
+        darkMode ? "border-t border-b border-black/50" : "bg-white"
+      }`}
     >
       <h2 className="text-center text-3xl font-serif font-semibold mb-12">
         Featured Weddings
@@ -89,12 +89,27 @@ export default function FeaturedWeddings3D() {
         className="relative w-full max-w-6xl mx-auto h-[540px] flex items-center justify-center"
         style={{ perspective: 1500 }}
       >
-        <div
+        <motion.div
           className="relative w-full h-full flex items-center justify-center"
           style={{ transformStyle: "preserve-3d" }}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.2}
+          onDragEnd={(e, info) => {
+            if (animating) return;
+            const offset = info.offset.x;
+            const velocity = info.velocity.x;
+
+            if (offset < -50 || velocity < -500) {
+              next();
+            } else if (offset > 50 || velocity > 500) {
+              prev();
+            }
+          }}
         >
           {albums.map((album, i) => {
-            const { x, scale, rotateY, zIndex, opacity, opacityDelay } = getPositionProps(i);
+            const { x, scale, rotateY, zIndex, opacity, opacityDelay } =
+              getPositionProps(i);
 
             return (
               <motion.button
@@ -106,7 +121,11 @@ export default function FeaturedWeddings3D() {
                   x: { duration: DURATION, ease: "easeInOut" },
                   scale: { duration: DURATION, ease: "easeInOut" },
                   rotateY: { duration: DURATION, ease: "easeInOut" },
-                  opacity: { duration: DURATION / 2, ease: "easeInOut", delay: opacityDelay },
+                  opacity: {
+                    duration: DURATION / 2,
+                    ease: "easeInOut",
+                    delay: opacityDelay,
+                  },
                 }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl overflow-hidden shadow-lg p-0 border-0 bg-transparent"
                 style={{
@@ -126,7 +145,6 @@ export default function FeaturedWeddings3D() {
                     height={CARD_HEIGHT}
                     className="block rounded-xl object-cover"
                   />
-                  {/* Album title overlay */}
                   <div
                     className={`absolute top-1 left-0 w-full font-serif text-center py-2 rounded-b-xl text-white/85`}
                   >
@@ -136,8 +154,9 @@ export default function FeaturedWeddings3D() {
               </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
+        {/* Navigation buttons */}
         <button
           onClick={prev}
           aria-label="Previous"
