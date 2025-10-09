@@ -12,5 +12,5 @@
     "footerName": "The Tor Photography"
   },
   "albumsPage": { "title": "Wedding Albums", "back": "← Back to Home", "forward": "Book Now →", "noCover": "No Cover" },
-  "contactPage": { "header": "Contact Me", "intro": "Have a question, project idea, or just want to say hello? Fill out the form below and I'll get back to you as soon as possible.", "sendButton": "Send Message" }
+  "contactPage": { "header": "Contact Me", "intro": "Have a question, collaboration idea, or just want to connect? Reach out through any of the channels below — I'd love to hear from you.", "sendButton": "Send Message" }
 }

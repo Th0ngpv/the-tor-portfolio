@@ -2,7 +2,7 @@
 
 import NavBar from "@/components/Navbar";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import en from "@/locales/en.json";
@@ -13,80 +13,126 @@ export default function ContactPage() {
   const { lang } = useLanguage();
   const t = lang === "en" ? en : vi;
 
-  return (
-    <main className={`${darkMode ? "bg-black text-white" : "bg-white text-gray-900"} min-h-screen`}>
-      <div className="p-6 max-w-3xl mx-auto">
-        <NavBar />
+  const contactItems = [
+    {
+      icon: <MapPin size={24} className="text-red-500" />,
+      content:
+        "435/1 Hương Lộ 3, P. Bình Hưng Hoà, Q. Bình Tân, HCM City, Vietnam",
+    },
+    {
+      icon: <Phone size={24} className="text-green-500" />,
+      content: (
+        <a href="tel:+84908094341" className="hover:underline">
+          +84 90 809 43 41
+        </a>
+      ),
+    },
+    {
+      icon: <Mail size={24} className="text-blue-500" />,
+      content: (
+        <a href="mailto:thetorstudio@gmail.com" className="hover:underline">
+          thetorstudio@gmail.com
+        </a>
+      ),
+    },
+  ];
 
+  const socialLinks = [
+    {
+      href: "https://www.instagram.com/thetor1997/",
+      icon: (
+        <Instagram
+          size={28}
+          className="hover:text-pink-500 transition-colors"
+        />
+      ),
+    },
+    {
+      href: "https://www.facebook.com/profile.php?id=61567321138883",
+      icon: (
+        <Facebook
+          size={28}
+          className="hover:text-blue-500 transition-colors"
+        />
+      ),
+    },
+  ];
+
+  return (
+    <main
+      className={`min-h-screen transition-colors duration-300 ${darkMode ? "bg-black/95 text-white" : "bg-white text-gray-900"
+        }`}
+    >
+      <NavBar />
+
+      <motion.div
+        className="flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 lg:px-32 py-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* Header */}
         <motion.header
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
           className="text-center mb-10"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          <p className="text-sm uppercase text-gray-500 tracking-wider">Get in Touch</p>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mt-2">{t.contactPage.header}</h1>
-          <p className={`text-md mt-4 max-w-xl mx-auto ${darkMode ? "text-gray-300" : "text-gray-700"}`}>{t.contactPage.intro}</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+            {t.contactPage.header || "Contact Us"}
+          </h1>
+          <p className="max-w-2xl mx-auto text-lg leading-relaxed">
+            {t.contactPage.intro ||
+              "Have a question, collaboration idea, or just want to connect? Reach out through any of the channels below — I’d love to hear from you."}
+          </p>
         </motion.header>
 
-        <motion.form
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-6"
-          onSubmit={(e) => { e.preventDefault(); alert("Form submitted!"); }}
+        {/* Contact Section */}
+        <motion.section
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full max-w-6xl items-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
         >
-          <div>
-            <label htmlFor="name" className={`block text-sm font-medium ${darkMode ? "text-white" : "text-gray-700"}`}>Name</label>
-            <input id="name" type="text" required className="mt-1 block w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-black focus:ring-black" />
+          {/* Contact Info */}
+          <div className="flex flex-col gap-6 text-center lg:text-left">
+            {contactItems.map((item, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-4 justify-center lg:justify-start"
+              >
+                {item.icon}
+                <p>{item.content}</p>
+              </div>
+            ))}
+
+            <div className="flex gap-6 justify-center lg:justify-start mt-2">
+              {socialLinks.map((social, i) => (
+                <a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:scale-110 transition-transform"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div>
-            <label htmlFor="email" className={`block text-sm font-medium ${darkMode ? "text-white" : "text-gray-700"}`}>Email</label>
-            <input id="email" type="email" required className="mt-1 block w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-black focus:ring-black" />
+          {/* Google Map */}
+          <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
+            <iframe
+              src="https://www.google.com/maps?q=10.801849,106.610333&hl=en&z=15&output=embed"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-[350px] rounded-2xl border-0 shadow-sm"
+            />
           </div>
-
-          <div>
-            <label htmlFor="message" className={`block text-sm font-medium ${darkMode ? "text-white" : "text-gray-700"}`}>Message</label>
-            <textarea id="message" rows={5} required className="mt-1 block w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-black focus:ring-black" />
-          </div>
-
-          <button
-            type="submit"
-            className={`w-full py-3 rounded-lg font-medium transition-colors border
-            ${darkMode ? "bg-white text-black hover:bg-black hover:border border-white hover:text-white" : "bg-black text-white border border-black/20 hover:bg-white hover:text-black hover:border-black"}`}
-          >
-            {t.contactPage.sendButton}
-          </button>
-        </motion.form>
-
-        <motion.div className="text-center mt-12 space-y-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-          <p className="text-gray-600">Or reach me directly:</p>
-          <p className="font-medium">your@email.com</p>
-          <div className={`flex justify-center gap-6 ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
-            <Link
-              href="https://instagram.com"
-              target="_blank"
-              className={`${darkMode ? "hover:text-white" : "hover:text-black"} transition-colors`}
-            >
-              Instagram
-            </Link>
-            <Link
-              href="https://facebook.com"
-              target="_blank"
-              className={`${darkMode ? "hover:text-white" : "hover:text-black"} transition-colors`}
-            >
-              Facebook
-            </Link>
-            <Link
-              href="/"
-              className={`${darkMode ? "hover:text-white" : "hover:text-black"} transition-colors`}
-            >
-              {t.nav.home}
-            </Link>
-          </div>
-        </motion.div>
-      </div>
+        </motion.section>
+      </motion.div>
     </main>
   );
 }

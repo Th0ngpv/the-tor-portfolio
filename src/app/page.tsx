@@ -16,7 +16,7 @@ export default function HomePage() {
   const t = lang === "en" ? en : vi;
 
   return (
-    <main className={`transition-colors duration-500 ${darkMode ? "bg-black/95 text-gray-100" : "bg-white text-gray-900"}`}>
+    <main className={`transition-colors duration-500 ${darkMode ? "bg-black/95 text-gray-100" : "bg-ivory text-gray-900"}`}>
       <NavBar />
 
       {/* Hero Section */}
@@ -62,7 +62,7 @@ export default function HomePage() {
       <FeaturedWeddings />
 
       {/* Call to Action */}
-      <section className={`py-20 px-6 text-center ${darkMode ? "bg-black/75" : "bg-gray-100"}`}>
+      <section className={`py-20 px-6 text-center ${darkMode ? "bg-black/75" : "bg-ivory"}`}>
         <h2 className="text-3xl font-serif font-semibold mb-4">
           {t.homePage.ctaTitle || "Let's Create Timeless Memories"}
         </h2>
@@ -80,7 +80,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className={darkMode ? "py-12 text-center text-gray-400 text-sm" : "py-12 text-center text-gray-600 text-sm"}>
+      <footer className="py-12 text-center text-gray-600 text-sm">
         <p>© {new Date().getFullYear()} {t.homePage.footerName || "The Tor Photography"}</p>
         <p className="mt-2">
           <a href="mailto:hello@thetorphotography.com" className="hover:underline">
