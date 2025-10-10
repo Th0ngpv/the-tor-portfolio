@@ -1,36 +1,165 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+   <a href="https://the-tor.vercel.app/"><img src="./public/favicon.svg" alt="Logo" width="120" /></a>
+</p>
+<p align="center">
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white" /></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" /></a>
+  <a href="https://framer.com/motion/"><img src="https://img.shields.io/badge/Framer_Motion-EF4444?style=for-the-badge&logo=framer&logoColor=white" /></a>
+  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Deployed_on-Vercel-black?style=for-the-badge&logo=vercel&logoColor=white" /></a>
+</p>
 
-## Getting Started
+# 📸 Wedding Photography Portfolio
 
-First, run the development server:
+A minimal and elegant portfolio website built to showcase wedding photography.  
+This project serves as both a personal showcase and an open-source reference for anyone who wants to create a creative static site using **Next.js**, **Tailwind CSS**, and **Framer Motion**.
 
+---
+
+## ✨ Features
+
+- 🎞️ Responsive photo gallery showcasing wedding moments  
+- ⚡ Fast and fully static — hosted on **Vercel**  
+- 🎨 Clean, modern UI with **Tailwind CSS**  
+- 🎬 Smooth, lightweight animations using **Framer Motion**  
+- 🖼️ All images stored locally in the `public/` folder  
+- 💡 Easy to update, customize, and redeploy  
+
+---
+
+## 🧱 Tech Stack
+
+- **Next.js** – React framework for building static and dynamic web apps  
+- **React** – Core UI library  
+- **Tailwind CSS** – Utility-first CSS framework  
+- **Framer Motion** – Animation library for React  
+- **Vercel** – Hosting and deployment platform  
+
+---
+
+## 🚀 Getting Started
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Th0ngpv/the-tor-portfolio
+cd photography-portfolio
 ```
+2. Install dependencies
+```bash
+Copy code
+npm install
+```
+3. Run the development server
+```bash
+Copy code
+npm run dev
+```
+Then open http://localhost:3000 in your browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Build for production
+```bash
+Copy code
+npm run build
+npm start
+```
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🖼️ Adding Your Photos
+All photos are stored inside the /public/images/ directory.
+To add or update your gallery:
 
-## Learn More
+- Place new images in /public/images/.
+- Update any gallery or component that references them.
+- Rebuild and redeploy the site.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🌐 Deployment
+This project is deployed on Vercel.
+Every commit to the main branch triggers an automatic deployment.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To deploy your own version:
 
-## Deploy on Vercel
+- Push your repository to GitHub.
+- Import it into Vercel.
+- Set the framework preset to Next.js.
+- Click Deploy — that’s it!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 💡 Inspiration
+Built with modern web technologies while preserving a classic, cinematic feel — designed to be elegant, fast, and affordable to maintain for a small freelance photographer.
+
+---
+
+### 🤝 Contributing
+Contributions, feedback, and ideas are welcome!
+
+- Fork this repository.
+- Create a new branch.
+- Make your changes and submit a pull request.
+
+---
+
+### 🧑‍💻 Author
+Pham Viet Thong (Bill Pham)
+
+Freelance Web Developer
+
+📧 thongpv160605@gmail.com
+
+## 📁 Project Structure
+
+This project follows the **Next.js App Router** pattern with localized content, reusable components, and static assets stored in the `public` folder.
+
+```plaintext
+.
+├── app/                     # Next.js app router pages
+│   ├── favicon.ico
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── albums/
+│   │   ├── page.tsx
+│   │   └── [slug]/page.tsx
+│   └── contact/
+│       └── page.tsx
+│
+├── components/              # Reusable UI components
+│   ├── AlbumPage.tsx
+│   ├── FeaturedWeddings.tsx
+│   ├── Lightbox.tsx
+│   └── Navbar.tsx
+│
+├── context/                 # Theme & language contexts
+│   ├── LanguageContext.tsx
+│   └── ThemeContext.tsx
+│
+├── data/                    # Album metadata
+│   └── albums.ts
+│
+├── locales/                 # Translations (English / Vietnamese)
+│   ├── en.json
+│   └── vi.json
+│
+└──styles/                  # Global styling
+    └── globals.css
+
+  public/                  # Static assets
+    ├── favicon.svg
+    ├── hero-wedding.jpg
+    ├── icons/
+    │   ├── facebook.svg
+    │   ├── instagram.svg
+    │   ├── location.svg
+    │   ├── mail.svg
+    │   └── phone.svg
+    └── albums/
+        ├── dana-kuda/
+        │   ├── 01.jpg ... 10.jpg
+        ├── phuong-tuan/
+        │   ├── 01.jpg ... 10.jpg
+        ├── dana-kuda-copy/
+        │   ├── 01.jpg ... 10.jpg
+        └── phuong-tuan-copy/
+            ├── 01.jpg ... 10.jpg
+```
