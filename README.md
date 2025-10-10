@@ -45,20 +45,16 @@ cd photography-portfolio
 ```
 2. Install dependencies
 ```bash
-Copy code
 npm install
 ```
 3. Run the development server
 ```bash
-Copy code
 npm run dev
 ```
 Then open http://localhost:3000 in your browser.
 
-
 4. Build for production
 ```bash
-Copy code
 npm run build
 npm start
 ```
