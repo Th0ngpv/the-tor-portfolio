@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { albums } from "@/data/albums";
 import AlbumPage from "@/components/AlbumPage";
-import NavBar from "@/components/Navbar";
 
 export default function AlbumDetail({ params }: { params: { slug: string } }) {
   const { slug } = params;
