@@ -150,12 +150,14 @@ This project follows the **Next.js App Router** pattern with localized content, 
     │   ├── mail.svg
     │   └── phone.svg
     └── albums/
-        ├── dana-kuda/
-        │   ├── 01.jpg ... 10.jpg
-        ├── phuong-tuan/
-        │   ├── 01.jpg ... 10.jpg
-        ├── dana-kuda-copy/
-        │   ├── 01.jpg ... 10.jpg
-        └── phuong-tuan-copy/
-            ├── 01.jpg ... 10.jpg
+        ├── duy-anh/
+        │   
+        ├── hang-thai/
+        │   
+        ├── phuc-trang/
+        │   
+        ├── phuc-trang-2/
+        │   
+        └── phuc-trang-3/
+            
 ```
