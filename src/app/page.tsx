@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,45 +16,66 @@ export default function HomePage() {
   const { lang } = useLanguage();
   const t = lang === "en" ? en : vi;
 
+  // Mouse position state for parallax
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 30; // max offset ±15px
+    const y = (e.clientY / window.innerHeight - 0.5) * 30;
+    setMousePos({ x, y });
+  };
+
   return (
-    <main className={`transition-colors duration-500 ${darkMode ? "bg-black/95 text-gray-100" : "bg-white text-gray-900"}`}>
+    <main className={`transition-colors duration-500 ${darkMode ? "bg-black/95 text-gray-100 selection:bg-white selection:text-black" : "bg-white text-gray-900 selection:bg-black selection:text-white"}`}>
       <NavBar />
 
-      {/* Hero Section */}
-      <motion.section
-        className="relative w-full h-[90vh] flex items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+      {/* Hero Section with Parallax */}
+      <section
+        className="mb-10 relative w-full h-[90vh] flex items-center justify-center overflow-hidden"
+        onMouseMove={handleMouseMove}
       >
-        <Image
-          src="/hero-wedding.jpg"
-          alt={t.homePage.heroAlt || "Wedding Photography"}
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="relative text-center px-4">
-          <h1 className="text-gray-100 text-5xl md:text-7xl font-serif font-bold mb-4">
+        {/* Background Image Only Moves */}
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            x: mousePos.x * 0.3,
+            y: mousePos.y * 0.3,
+          }}
+          transition={{ type: "spring", stiffness: 50, damping: 20 }}
+        >
+          <Image
+            src="/hero-wedding.jpg"
+            alt={t.homePage.heroAlt || "Wedding Photography"}
+            fill
+            priority
+            className="object-cover scale-110"
+          />
+          <div className="absolute inset-0 bg-black/30" />
+        </motion.div>
+
+        {/* Hero Text (Static) */}
+        <div className="relative text-center px-4 z-10 text-shadow-lg">
+          <h1 className="text-gray-100 text-5xl  md:text-7xl font-serif font-bold mb-5 ">
             {t.homePage.title || "The Tor Photography"}
           </h1>
-          <p className="text-gray-100 text-lg md:text-xl font-light tracking-wide">
+          <p className="text-gray-100   md:text-xl tracking-wide">
             {t.homePage.subtitle || "Capturing Love Stories With Elegance"}
           </p>
         </div>
-        <div className="absolute bottom-8 w-full flex justify-center">
-          <span className="animate-bounce text-white">↓</span>
+
+        {/* Scroll Arrow (Static) */}
+        <div className="absolute bottom-8 w-full flex justify-center z-10">
+          <span className="animate-bounce text-white text-2xl">↓</span>
         </div>
-      </motion.section>
+      </section>
 
       {/* About / Intro */}
-      <section className="py-20 max-w-3xl mx-auto px-6 text-center">
+      <section className="py-10 max-w-3xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-serif font-semibold mb-6">
           {t.homePage.welcomeTitle || "Welcome"}
         </h2>
-        <p className={`text-md ${darkMode ? "text-gray-300 leading-relaxed" : "text-gray-700 leading-relaxed"}`}>
-          {t.homePage.aboutText || 
+        <p className={`text-lg ${darkMode ? "text-gray-300 leading-relaxed" : "text-gray-700 leading-relaxed"}`}>
+          {t.homePage.aboutText ||
             "I'm Tor, a wedding photographer passionate about capturing authentic moments filled with love, joy, and timeless beauty. My approach is natural and elegant — telling your story through images that last a lifetime."}
         </p>
       </section>
@@ -62,7 +84,7 @@ export default function HomePage() {
       <FeaturedWeddings />
 
       {/* Call to Action */}
-      <section className={`py-20 px-6 text-center ${darkMode ? "bg-black/75" : "bg-white"}`}>
+      <section className={`py-10 pb-12 px-6 text-center ${darkMode ? "bg-black/25" : "bg-white"}`}>
         <h2 className="text-3xl font-serif font-semibold mb-4">
           {t.homePage.ctaTitle || "Let's Create Timeless Memories"}
         </h2>
@@ -71,26 +93,13 @@ export default function HomePage() {
         </p>
         <Link
           href="/contact"
-          className={`inline-block font-bold py-3 px-8 rounded-full transition-colors ${
-            darkMode ? "bg-white text-gray-900 hover:bg-gray-200" : "bg-black text-white hover:bg-gray-800"
+          className={` border inline-block font-bold py-3 px-8 rounded-full transition-colors hover:scale-105 ${
+            darkMode ? "bg-white text-gray-900 hover:bg-black/70 hover:text-white hover:border-white " : "bg-black text-white hover:bg-gray-100 hover:text-black hover:border-black"
           }`}
         >
-          {t.homePage.ctaButton || "Book Your Wedding"}
+          {t.homePage.ctaButton || "Check Availability"}
         </Link>
       </section>
-
-      {/* Footer */}
-      <footer className="py-12 text-center text-gray-600 text-sm">
-        <p>© {new Date().getFullYear()} {t.homePage.footerName || "The Tor Photography"}</p>
-        <p className="mt-2">
-          <a href="mailto:thetorstudio@gmail.com" className="hover:underline">
-            thetorstudio@gmail.com
-          </a>{" "}
-          | <a href="https://www.instagram.com/thetor1997" target="_blank" className="hover:underline">
-            Instagram
-          </a>
-        </p>
-      </footer>
     </main>
   );
 }
