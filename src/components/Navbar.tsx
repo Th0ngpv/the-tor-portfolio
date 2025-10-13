@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
+import TorLogo from "@/components/TorLogo";
+
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,6 +27,9 @@ export default function NavBar() {
 
   return (
     <div className="relative font-serif">
+      {/* Floating Tor Logo */}
+      <TorLogo />
+
       {/* Top-right buttons */}
       <div className="fixed top-5 right-5 z-50 flex items-center space-x-2">
         {/* Dark Mode */}
