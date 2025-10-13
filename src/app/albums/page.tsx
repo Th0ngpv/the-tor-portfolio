@@ -37,7 +37,7 @@ export default function AlbumsPage() {
           transition={{ duration: 0.5, delay: i * 0.05 }}
         >
           <Link href={`/albums/${album.slug}`} className="group block">
-            <div className="relative w-full h-64 rounded-lg overflow-hidden bg-gray-200">
+            <div className="relative w-full h-64 rounded-lg overflow-hidden bg-gray-200 shadow-xl">
               {album.coverUrl ? (
                 <Image
                   src={album.coverUrl}
