@@ -57,7 +57,7 @@ export default function ContactPage() {
       <NavBar />
 
       <motion.div
-        className="flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 lg:px-32 py-12"
+        className="flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 lg:px-32 py-40"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
