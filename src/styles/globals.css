@@ -7,3 +7,25 @@
 @theme {
   --color-white: #F7F7F7; 
 }
+
+@layer base {
+  /* Light mode selection */
+  body {
+    @apply selection:bg-black selection:text-white;
+  }
+
+  /* Dark mode selection */
+  body.dark {
+    @apply selection:bg-white selection:text-black;
+  }
+}
+
+/* Hide scrollbar for all elements */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

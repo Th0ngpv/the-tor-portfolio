@@ -44,6 +44,12 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       return newMode;
     });
   };
+  
+   useEffect(() => {
+    const body = document.body;
+    if (darkMode) body.classList.add("dark");
+    else body.classList.remove("dark");
+  }, [darkMode]);
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
