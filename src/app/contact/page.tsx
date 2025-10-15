@@ -74,7 +74,7 @@ export default function ContactPage() {
           </h1>
           <p className="max-w-2xl mx-auto text-lg leading-relaxed">
             {t.contactPage.intro ||
-              "Have a question, collaboration idea, or just want to connect? Reach out through any of the channels below — I’d love to hear from you."}
+              "Reach out for inquiries, collaborations, or just to say hello."}
           </p>
         </motion.header>
 

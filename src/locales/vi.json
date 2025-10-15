@@ -8,9 +8,8 @@
     "aboutText": "Tôi là Tor, một nhiếp ảnh gia cưới đam mê ghi lại những khoảnh khắc chân thực, tràn đầy tình yêu, niềm vui và vẻ đẹp vượt thời gian. Phong cách của tôi tự nhiên và tinh tế — kể câu chuyện của bạn qua những hình ảnh trường tồn.",
     "ctaTitle": "Hãy Tạo Ra Những Kỷ Niệm Vượt Thời Gian",
     "ctaText": "Tôi rất muốn lắng nghe kế hoạch cưới của bạn. Hãy cùng nhau ghi lại câu chuyện của bạn.",
-    "ctaButton": "Đặt Ngay",
-    "footerName": "The Tor Photography"
+    "ctaButton": "Đặt Ngay"
   },
   "albumsPage": { "title": "Album Cưới", "back": "← Quay về Trang Chủ","forward": "Đặt Lịch Ngay →", "noCover": "Không có ảnh bìa" },
-  "contactPage": { "header": "Liên hệ tôi", "intro": "Có câu hỏi, ý tưởng hợp tác, hay đơn giản là muốn kết nối? Hãy liên hệ với tôi qua các kênh bên dưới — rất vui được trò chuyện cùng bạn.", "sendButton": "Gửi Thông Điệp" }
+  "contactPage": { "header": "Liên hệ tôi", "sendButton": "Gửi Thông Điệp" }
 }
