@@ -11,5 +11,5 @@
     "ctaButton": "Đặt Ngay"
   },
   "albumsPage": { "title": "Album Cưới", "back": "← Quay về Trang Chủ","forward": "Đặt Lịch Ngay →", "noCover": "Không có ảnh bìa" },
-  "contactPage": { "header": "Liên hệ tôi", "sendButton": "Gửi Thông Điệp" }
+  "contactPage": { "header": "Liên hệ tôi","intro": "Reach out for inquiries, collaborations, or just to say hello.", "sendButton": "Gửi Thông Điệp" }
 }
