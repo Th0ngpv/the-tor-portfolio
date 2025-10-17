@@ -1,31 +1,41 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@theme {
-  --color-white: #F7F7F7; 
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-@layer base {
-  /* Light mode selection */
-  body {
-    @apply selection:bg-black selection:text-white;
-  }
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-playfair: var(--font-playfair);
+}
 
-  /* Dark mode selection */
-  body.dark {
-    @apply selection:bg-white selection:text-black;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
   }
 }
 
-/* Hide scrollbar for all elements */
-* {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-*::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+/* Chrome / Safari */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge (old), and Firefox */
+html, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Still allow scrolling */
+body {
+  overflow-y: scroll;
 }
