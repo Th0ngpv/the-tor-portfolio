@@ -1,73 +1,28 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
-import FeaturedWeddings from "@/components/FeaturedWeddings";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import NavBar from "@/components/Navbar";
 import en from "@/locales/en.json";
 import vi from "@/locales/vi.json";
 
+import FeaturedWeddings from "@/components/FeaturedWeddings";
+import HeroMaskIntro from "@/components/HeroMaskIntro";
+
 export default function HomePage() {
   const { darkMode } = useTheme();
   const { lang } = useLanguage();
   const t = lang === "en" ? en : vi;
 
-  // Mouse position state for parallax
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 30; // max offset ±15px
-    const y = (e.clientY / window.innerHeight - 0.5) * 30;
-    setMousePos({ x, y });
-  };
-
   return (
+    
     <main className={`transition-colors duration-500 ${darkMode ? "bg-black/95 text-gray-100 selection:bg-white selection:text-black" : "bg-white text-gray-900 selection:bg-black selection:text-white"}`}>
+      
       <NavBar />
 
       {/* Hero Section with Parallax */}
-      <section
-        className="mb-10 relative w-full h-[90vh] flex items-center justify-center overflow-hidden"
-        onMouseMove={handleMouseMove}
-      >
-        {/* Background Image Only Moves */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            x: mousePos.x * 0.3,
-            y: mousePos.y * 0.3,
-          }}
-          transition={{ type: "spring", stiffness: 50, damping: 20 }}
-        >
-          <Image
-            src="/hero-wedding.jpg"
-            alt={t.homePage.heroAlt || "Wedding Photography"}
-            fill
-            priority
-            className="object-cover scale-110"
-          />
-          <div className="absolute inset-0 bg-black/30" />
-        </motion.div>
-
-        {/* Hero Text (Static) */}
-        <div className="relative text-center px-4 z-10 text-shadow-lg">
-          <h1 className="text-gray-100 text-5xl  md:text-7xl font-serif font-bold mb-5 ">
-            {t.homePage.title || "The Tor Photography"}
-          </h1>
-          <p className="text-gray-100   md:text-xl tracking-wide">
-            {t.homePage.subtitle || "Capturing Love Stories With Elegance"}
-          </p>
-        </div>
-
-        {/* Scroll Arrow (Static) */}
-        <div className="absolute bottom-8 w-full flex justify-center z-10">
-          <span className="animate-bounce text-white text-2xl">↓</span>
-        </div>
-      </section>
+      <HeroMaskIntro />
 
       {/* About / Intro */}
       <section className="py-10 max-w-3xl mx-auto px-6 text-center">
