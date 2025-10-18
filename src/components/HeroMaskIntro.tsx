@@ -116,8 +116,6 @@ export default function HeroMaskIntro() {
           Capturing Your Love Story With Elegance
         </motion.p>
       </div>
-
-      Scroll Arrow
       <motion.div className="absolute bottom-8 w-full flex justify-center z-10 opacity-0"
       animate={{opacity:[0,1]}}
       transition={{duration: 1, delay: 2, ease: "easeOut"}}>
