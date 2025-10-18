@@ -13,6 +13,7 @@ export default function FeaturedWeddings3D() {
   const [hovering, setHovering] = useState(false);
   const len = albums.length;
 
+
   // Card constants
   const CARD_WIDTH = 340;
   const CARD_HEIGHT = Math.round(CARD_WIDTH * 1.33);
@@ -85,8 +86,6 @@ export default function FeaturedWeddings3D() {
 
       <div
         ref={containerRef}
-        onMouseEnter={() => setHovering(true)}
-        onMouseLeave={() => setHovering(false)}
         className="relative w-full max-w-6xl mx-auto h-[540px] flex items-center justify-center"
         style={{ perspective: 1500 }}
       >
@@ -104,10 +103,13 @@ export default function FeaturedWeddings3D() {
         >
           {albums.map((album, i) => {
             const { x, scale, rotateY, zIndex, opacity, opacityDelay } = getPositionProps(i);
+            const isCenter = (i === activeIndex);
             return (
               <motion.button
                 key={album.slug}
                 onClick={() => !animating && setActiveIndex(i)}
+                onMouseEnter={() => isCenter && setHovering(true)}   // 👈 only center card triggers hover
+                onMouseLeave={() => isCenter && setHovering(false)}
 
                 initial={false}
                 animate={{ x, scale, rotateY, opacity }}
