@@ -53,7 +53,7 @@ export default function ContactPage() {
 
       {/* Header */}
       <motion.header
-        className="text-center pt-10 px-6"
+        className="text-center py-10 px-6 mt-5"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
