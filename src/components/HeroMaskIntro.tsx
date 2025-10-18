@@ -69,7 +69,7 @@ export default function HeroMaskIntro() {
             animate={{
               opacity: [0, 0.3, 1],
               y: ["10vh", "0vh", "0vh"],
-              x: ["-20vw", "-20vw", "-5vw"],
+              x: ["-20vw", "-20vw", "-10vw"],
             }}
             transition={{ duration: 2, ease: "easeInOut", times: [0, 0.5, 1], }}
           >
@@ -83,7 +83,7 @@ export default function HeroMaskIntro() {
             animate={{
               opacity: [0, 0.3, 1],
               y: ["-5vh", "2vh", "0vh"],
-              x: ["-2vw"],
+              x: ["-7vw"],
             }}
             transition={{ duration: 2, ease: "easeInOut", times: [0, 0.5, 1], }}
           >
@@ -92,12 +92,12 @@ export default function HeroMaskIntro() {
 
           {/* “Photos” */}
           <motion.h1
-            className="absolute left-full text-white text-3xl text-shadow-md 
+            className="absolute left-full text-white text-[2rem] text-shadow-md 
             md:text-6xl font-playfair font-semibold uppercase opacity-0"
             animate={{
               opacity: [0, 0.3, 1],
               y: ["10vh", "0vh", "0vh"],
-              x: ["15vw", "15vw", "-0.5vw"],
+              x: ["15vw", "15vw", "-4vw"],
             }}
             transition={{ duration: 2, ease: "easeInOut", times: [0, 0.5, 1], }}
           >
@@ -107,10 +107,10 @@ export default function HeroMaskIntro() {
 
         {/* Subtitle */}
         <motion.p
-          className="font-playfair text-shadow-md tracking-wider absolute bottom-top w-full text-center text-white/95 
-          md:text-2xl"
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 90 }}
+          className="font-playfair text-shadow-md tracking-wider absolute bottom-top w-full text-center text-white/95 pt-10
+          md:text-2xl md:pt-[10vh]"
+          initial={{ opacity: 0, y: "7vh" }}
+          animate={{ opacity: 1, y: "6vh" }}
           transition={{ duration: 1, delay: 2, ease: "easeOut" }}
         >
           Capturing Your Love Story With Elegance
