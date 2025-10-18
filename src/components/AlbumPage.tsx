@@ -6,36 +6,32 @@ import { motion } from "framer-motion";
 import Lightbox from "./Lightbox";
 import { Album } from "@/data/albums";
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
 import NavBar from "./Navbar";
 
 export default function AlbumPage({ album }: { album: Album }) {
   const [current, setCurrent] = useState<number | null>(null);
-  const { darkMode } = useTheme();
 
   return (
-    // Full page container
-    <div className={`${darkMode ? "bg-black text-white" : "bg-white text-gray-900"} min-h-screen`}>
+    <main className="min-h-screen transition-colors duration-500 bg-background text-foreground selection:bg-foreground selection:text-background">
       {/* NavBar */}
       <NavBar />
-      
-      {/* Content wrapper centered */}
+
+      {/* Content wrapper */}
       <div className="p-6 max-w-6xl mx-auto">
-        
-        {/* header */}
+        {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
           className="text-center mb-8"
         >
-          <p className="text-sm uppercase text-gray-500 tracking-wider">{album.type}</p>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mt-2">{album.title}</h1>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">{album.intro}</p>
+          <p className="text-sm uppercase text-secondary tracking-wider">{album.type}</p>
+          <h1 className="text-4xl md:text-5xl font-playfair font-bold mt-2">{album.title}</h1>
+          <p className="mt-4 text-secondary max-w-2xl mx-auto">{album.intro}</p>
         </motion.header>
 
-        {/* masonry grid */}
-        <div className={`columns-2 md:columns-3 gap-4 p-6 max-w-6xl mx-auto`}>
+        {/* Masonry grid */}
+        <div className="columns-2 md:columns-3 gap-4 p-6 max-w-6xl mx-auto">
           {album.images.map((img, i) => (
             <motion.div
               key={img.src}
@@ -52,24 +48,24 @@ export default function AlbumPage({ album }: { album: Album }) {
                 alt={img.alt}
                 width={800}
                 height={1200}
-                className={`w-full h-auto rounded-lg ${darkMode ? 'border border-white/10' : ''}`}
+                className="w-full h-auto rounded-lg border border-border"
               />
             </motion.div>
           ))}
         </div>
 
-        {/* footer */}
+        {/* Footer links */}
         <motion.div
           className="flex justify-between items-center mt-8 px-1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <Link href="/albums" className="text-sm md:text-base text-gray-400 hover:underline">← More albums</Link>
-          <Link href="/" className="text-sm md:text-base text-gray-400 hover:underline">Back to Home →</Link>
+          <Link href="/albums" className="text-sm md:text-base text-secondary hover:underline">← More albums</Link>
+          <Link href="/" className="text-sm md:text-base text-secondary hover:underline">Back to Home →</Link>
         </motion.div>
 
-        {/* lightbox */}
+        {/* Lightbox */}
         {current !== null && (
           <Lightbox
             images={album.images}
@@ -82,6 +78,6 @@ export default function AlbumPage({ album }: { album: Album }) {
           />
         )}
       </div>
-    </div>
+    </main>
   );
 }

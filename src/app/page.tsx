@@ -1,35 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
-import NavBar from "@/components/Navbar";
 import en from "@/locales/en.json";
 import vi from "@/locales/vi.json";
 
+import NavBar from "@/components/Navbar";
 import FeaturedWeddings from "@/components/FeaturedWeddings";
 import HeroMaskIntro from "@/components/HeroMaskIntro";
 
 export default function HomePage() {
-  const { darkMode } = useTheme();
   const { lang } = useLanguage();
   const t = lang === "en" ? en : vi;
 
   return (
-    
-    <main className={`transition-colors duration-500 ${darkMode ? "bg-black/95 text-gray-100 selection:bg-white selection:text-black" : "bg-white text-gray-900 selection:bg-black selection:text-white"}`}>
+    <main className="transition-colors duration-500 bg-background text-foreground selection:bg-foreground selection:text-background">
       
+      {/* Navigation bar */}
       <NavBar />
 
-      {/* Hero Section with Parallax */}
+      {/* Hero */}
       <HeroMaskIntro />
 
-      {/* About / Intro */}
-      <section className="py-10 max-w-3xl mx-auto px-6 text-center">
+      {/* About */}
+      <section className="py-10 max-w-3xl mx-auto px-6 text-center bg-background">
         <h2 className="text-3xl font-serif font-semibold mb-6">
           {t.homePage.welcomeTitle || "Welcome"}
         </h2>
-        <p className={`text-lg ${darkMode ? "text-gray-300 leading-relaxed" : "text-gray-700 leading-relaxed"}`}>
+        <p className="text-lg text-secondary leading-relaxed">
           {t.homePage.aboutText ||
             "I'm Tor, a wedding photographer passionate about capturing authentic moments filled with love, joy, and timeless beauty. My approach is natural and elegant — telling your story through images that last a lifetime."}
         </p>
@@ -39,18 +37,16 @@ export default function HomePage() {
       <FeaturedWeddings />
 
       {/* Call to Action */}
-      <section className={`py-10 pb-12 px-6 text-center ${darkMode ? "bg-black/25" : "bg-white"}`}>
+      <section className="py-10 pb-12 px-6 text-center bg-background">
         <h2 className="text-3xl font-serif font-semibold mb-4">
           {t.homePage.ctaTitle || "Let's Create Timeless Memories"}
         </h2>
-        <p className={darkMode ? "text-gray-300 mb-8" : "text-gray-600 mb-8"}>
+        <p className="text-secondary mb-8">
           {t.homePage.ctaText || "I would love to hear about your wedding plans. Let's capture your story together."}
         </p>
         <Link
           href="/contact"
-          className={` border inline-block font-bold py-3 px-8 rounded-full transition-colors hover:scale-105 ${
-            darkMode ? "bg-white text-gray-900 hover:bg-black/70 hover:text-white hover:border-white " : "bg-black text-white hover:bg-gray-100 hover:text-black hover:border-black"
-          }`}
+          className="border inline-block font-bold py-3 px-8 rounded-full transition-all bg-background text-primary hover:scale-105 hover:bg-foreground hover:text-background hover:border-accent"
         >
           {t.homePage.ctaButton || "Check Availability"}
         </Link>
