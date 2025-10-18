@@ -1,18 +1,30 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function HeroMaskIntro() {
   // Mouse parallax values
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const smoothX = useSpring(mouseX, { stiffness: 75, damping: 30 });
   const smoothY = useSpring(mouseY, { stiffness: 75, damping: 30 });
   const bgX = useTransform(smoothX, [-0.5, 0.5], ["1%", "-1%"]);
   const bgY = useTransform(smoothY, [-0.5, 0.5], ["1%", "-1%"]);
+  
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+  if (typeof window !== "undefined") {
+    const handleResize = () => {
+      // safe to use window here
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }
+}, []);
 
   useEffect(() => {
     // only enable parallax on desktop
@@ -44,24 +56,37 @@ export default function HeroMaskIntro() {
           opacity: [0, 1, 1],
           scale: [1, 1, 1.1]
         }}
-        transition={{ duration: 2.5, 
-          ease: "easeOut", 
-          times: [0, 0.3, 1], 
-          delay: 1.2 }}
+        transition={{
+          duration: 2.5,
+          ease: "easeOut",
+          times: [0, 0.3, 1],
+          delay: 1.2
+        }}
         style={{ x: isMobile ? 0 : bgX, y: isMobile ? 0 : bgY }}
       >
-        <Image
-          src="/hero-wedding.jpg"
-          alt="The Tor Photography"
-          fill
-          priority
-          className="object-cover brightness-40"
-        />
+        {isMobile ? (
+          <Image
+            src="/hero-wedding-mobile.jpg" // mobile version
+            alt="The Tor Photography"
+            fill
+            priority
+            className="object-cover brightness-40"
+          />
+        ) : (
+          <Image
+            src="/hero-wedding.jpg" // desktop version
+            alt="The Tor Photography"
+            fill
+            priority
+            className="object-cover brightness-40"
+          />
+        )}
       </motion.div>
 
       {/* Title Layer */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <motion.div className="relative flex items-center justify-center">
+        <motion.div className="relative flex items-center justify-center "
+          animate={{ x: isMobile ? 0 : "4vw" }}>
           {/* “The” */}
           <motion.h1
             className="font-playfair font-semibold absolute right-full text-white text-4xl text-shadow-md 
@@ -93,10 +118,10 @@ export default function HeroMaskIntro() {
           {/* “Photos” */}
           <motion.h1
             className="absolute left-full text-white text-[2rem] text-shadow-md 
-            md:text-6xl font-playfair font-semibold uppercase opacity-0"
+            md:text-[4rem] font-playfair font-semibold uppercase opacity-0"
             animate={{
               opacity: [0, 0.3, 1],
-              y: ["10vh", "0vh", "0vh"],
+              y: ["10vh", "0.25vh", "0.25vh"],
               x: ["15vw", "15vw", "-4vw"],
             }}
             transition={{ duration: 2, ease: "easeInOut", times: [0, 0.5, 1], }}
@@ -117,8 +142,8 @@ export default function HeroMaskIntro() {
         </motion.p>
       </div>
       <motion.div className="absolute bottom-8 w-full flex justify-center z-10 opacity-0"
-      animate={{opacity:[0,1]}}
-      transition={{duration: 1, delay: 2, ease: "easeOut"}}>
+        animate={{ opacity: [0, 1] }}
+        transition={{ duration: 1, delay: 2, ease: "easeOut" }}>
         <span className="animate-bounce [animation-duration:1.5s] text-white text-2xl">↓</span>
       </motion.div>
     </div>
